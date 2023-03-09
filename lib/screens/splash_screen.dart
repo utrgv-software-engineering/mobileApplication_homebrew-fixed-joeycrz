@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startTime() async {
-    var duration = Duration(seconds: 2);
+    var duration = Duration(seconds: 3);
     return Timer(duration, navigateToDeviceScreen);
   }
 
@@ -27,10 +27,26 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff4C748B),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("HOMEBREW"), Text("Great Coffee at Home")],
+          children: [
+            Text("HOMEBREW",
+                style: TextStyle(
+                    fontFamily: 'Norwester',
+                    color: Color(0xffFFFFFF),
+                    fontSize: 40,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal)),
+            Text("Great Coffee at Home",
+                style: TextStyle(
+                    fontFamily: "Kollektif",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 18,
+                    color: Color(0xffFFFFFF),
+                    fontWeight: FontWeight.normal)),
+          ],
         ),
       ),
     );
