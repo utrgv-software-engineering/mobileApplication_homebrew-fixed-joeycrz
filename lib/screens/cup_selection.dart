@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:homebrew/screens/cup_selection.dart';
 
-class ChooseDeviceScreen extends StatefulWidget {
+class CupSelection extends StatefulWidget {
   @override
-  _ChooseDeviceScreenState createState() => _ChooseDeviceScreenState();
+  _CupSelectionState createState() => _CupSelectionState();
 }
 
-class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
+class _CupSelectionState extends State<CupSelection> {
   @override
   bool def = false;
   bool check = false;
@@ -34,8 +33,8 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "What coffee maker are you using?",
-                key: Key('coffee_question'),
+                "You are a loser",
+                key: Key('cup_selection'),
                 style: TextStyle(
                     color: Color(0xff4C748B),
                     fontFamily: 'Montserrat',
@@ -56,7 +55,6 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InkWell(
-                    key: Key('french_press'),
                     onTap: () {
                       _onInkWellTapped(0);
                       check = true;
@@ -84,7 +82,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                                   fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
-                              width: 190,
+                              width: 200,
                             ),
                             Icon(
                               Icons.check,
@@ -95,7 +93,6 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                           ],
                         ))),
                 InkWell(
-                    key: Key('drip_machine'),
                     onTap: () {
                       _onInkWellTapped(1);
                       def = true;
@@ -120,7 +117,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                                   fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
-                              width: 190,
+                              width: 200,
                             ),
                             Icon(
                               Icons.check,
@@ -143,18 +140,9 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                 ),
                 minimumSize: Size(280, 46),
                 primary: Color(0xff4C748B)),
-            key: Key('continue_button'),
-            onPressed: def || check
-                ? () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CupSelection()));
-                  }
-                : null,
+            onPressed: def || check ? () {} : null,
             child: Text(
               'Continue',
-              key: Key('continue_button_text'),
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 14,
