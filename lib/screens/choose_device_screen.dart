@@ -7,11 +7,8 @@ class ChooseDeviceScreen extends StatefulWidget {
 }
 
 class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
-  @override
-  bool def = false;
-  bool check = false;
-  bool _agreed = false;
-  String keys = 'test';
+  bool def = true;
+  bool check = true;
   int select = -1;
 
   void _onInkWellTapped(int index) {
@@ -35,7 +32,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
             children: [
               Text(
                 "What coffee maker are you using?",
-                key: Key('coffee_question'),
+                key: Key('device_question'),
                 style: TextStyle(
                     color: Color(0xff4C748B),
                     fontFamily: 'Montserrat',
@@ -59,7 +56,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                     key: Key('french_press'),
                     onTap: () {
                       _onInkWellTapped(0);
-                      check = true;
+                      check = false;
                     },
                     child: Container(
                         //color: Color(0xfF3F3F3),
@@ -95,10 +92,10 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                           ],
                         ))),
                 InkWell(
-                    key: Key('drip_machine'),
+                    key: Key('drip'),
                     onTap: () {
                       _onInkWellTapped(1);
-                      def = true;
+                      def = false;
                     },
                     child: Container(
                         color: Color(0xfF3F3F3),
@@ -144,14 +141,14 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                 minimumSize: Size(280, 46),
                 primary: Color(0xff4C748B)),
             key: Key('continue_button'),
-            onPressed: def || check
-                ? () {
+            onPressed: def && check
+                ? null
+                : () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CupSelection()));
-                  }
-                : null,
+                  },
             child: Text(
               'Continue',
               key: Key('continue_button_text'),

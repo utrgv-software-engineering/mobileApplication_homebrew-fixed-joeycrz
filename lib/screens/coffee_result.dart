@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:homebrew/screens/choose_device_screen.dart';
-import 'package:homebrew/screens/coffee_result.dart';
+import 'package:homebrew/screens/cup_selection.dart';
 
-class CupSelection extends StatefulWidget {
+class CoffeeResult extends StatefulWidget {
   @override
-  _CupSelectionState createState() => _CupSelectionState();
+  _CoffeeResultState createState() => _CoffeeResultState();
 }
 
-class _CupSelectionState extends State<CupSelection> {
+class _CoffeeResultState extends State<CoffeeResult> {
   final textController = TextEditingController();
   bool button = false;
 
-  @override
   void initState() {
     super.initState();
     textController.addListener(() {
@@ -20,23 +18,6 @@ class _CupSelectionState extends State<CupSelection> {
         button = textController.text.isNotEmpty;
       });
     });
-  }
-
-  bool _validateTextField(String value) {
-    if (value.isEmpty) {
-      return false;
-    }
-    int cups = int.tryParse(value);
-    if (cups != null && cups > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -54,12 +35,11 @@ class _CupSelectionState extends State<CupSelection> {
                 width: 20,
               ),
               IconButton(
-                  key: Key('back_button'),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ChooseDeviceScreen()));
+                            builder: (context) => CupSelection()));
                   },
                   icon: Icon(
                     Icons.arrow_back_ios,
@@ -69,21 +49,6 @@ class _CupSelectionState extends State<CupSelection> {
           ),
           SizedBox(
             height: 170,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "How many cups would you like?",
-                key: Key('cup_question'),
-                style: TextStyle(
-                    color: Color(0xff4C748B),
-                    fontFamily: 'Montserrat',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
           ),
           SizedBox(
             height: 15,
@@ -100,7 +65,6 @@ class _CupSelectionState extends State<CupSelection> {
                   width: 337,
                   height: 48,
                   child: TextField(
-                    key: Key('coffee_num'),
                     controller: textController,
                     decoration:
                         InputDecoration(contentPadding: EdgeInsets.all(15)),
@@ -108,9 +72,7 @@ class _CupSelectionState extends State<CupSelection> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    onChanged: (value) {
-                      button = _validateTextField(value);
-                    },
+                    onChanged: (value) {},
                   ),
                 ),
               ],
@@ -120,21 +82,13 @@ class _CupSelectionState extends State<CupSelection> {
             height: 25,
           ),
           ElevatedButton(
-            key: Key('continue_button2'),
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
                 minimumSize: Size(280, 45),
                 primary: Color(0xff4C748B)),
-            onPressed: button
-                ? () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CoffeeResult()));
-                  }
-                : null,
+            onPressed: button ? () {} : null,
             child: Text(
               'Continue',
               style: TextStyle(
