@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homebrew/screens/cup_selection.dart';
+import 'package:homebrew/utils/coffee_tools.dart';
 
 class ChooseDeviceScreen extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
   bool def = true;
   bool check = true;
   int select = -1;
+  String device = '';
 
   void _onInkWellTapped(int index) {
     setState(() {
@@ -57,6 +59,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                     onTap: () {
                       _onInkWellTapped(0);
                       check = false;
+                      device = 'French Press';
                     },
                     child: Container(
                         //color: Color(0xfF3F3F3),
@@ -96,6 +99,7 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                     onTap: () {
                       _onInkWellTapped(1);
                       def = false;
+                      device = 'Drip Machine';
                     },
                     child: Container(
                         color: Color(0xfF3F3F3),
@@ -147,7 +151,9 @@ class _ChooseDeviceScreenState extends State<ChooseDeviceScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CupSelection()));
+                            builder: (context) => CupSelection(
+                                  device: device,
+                                )));
                   },
             child: Text(
               'Continue',
