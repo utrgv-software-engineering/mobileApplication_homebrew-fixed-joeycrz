@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:homebrew/screens/choose_device_screen.dart';
 import 'package:homebrew/screens/coffee_result.dart';
+import 'package:homebrew/utils/coffee_tools.dart';
 
 class CupSelection extends StatefulWidget {
   @override
+  String device = '';
+  CupSelection({this.device});
   _CupSelectionState createState() => _CupSelectionState();
 }
 
 class _CupSelectionState extends State<CupSelection> {
   final textController = TextEditingController();
   bool button = false;
+  int userInput = 0;
 
   @override
   void initState() {
@@ -110,6 +114,7 @@ class _CupSelectionState extends State<CupSelection> {
                     ],
                     onChanged: (value) {
                       button = _validateTextField(value);
+                      userInput = int.parse(value);
                     },
                   ),
                 ),
@@ -132,7 +137,10 @@ class _CupSelectionState extends State<CupSelection> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CoffeeResult()));
+                            builder: (context) => CoffeeResult(
+                                  device: widget.device,
+                                  userInput: userInput,
+                                )));
                   }
                 : null,
             child: Text(
